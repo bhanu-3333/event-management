@@ -1,48 +1,47 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function RegisterPage() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
 
-  const handleRegister = async (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-
-    const res = await fetch("http://localhost:5000/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password })
-    });
-
-    const data = await res.json();
-    alert(data.message);
+    // ✅ Call backend API for registration here
+    navigate("/home");
   };
 
   return (
-    <form onSubmit={handleRegister}>
+    <div style={styles.container}>
       <h2>Register</h2>
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Register</button>
-    </form>
+      <form onSubmit={handleRegister}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 }
+
+const styles = {
+  container: { textAlign: "center", marginTop: "50px" },
+};
