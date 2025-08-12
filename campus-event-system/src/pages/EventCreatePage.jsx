@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./EventCreatePage.css"; // Import CSS file
 
 export default function EventCreatePage() {
   const [eventName, setEventName] = useState("");
@@ -38,40 +37,28 @@ export default function EventCreatePage() {
 
     if (res.ok) {
       alert("Event Created Successfully!");
-      navigate("/home");
+      navigate("/home"); // Go back to home after creation
     } else {
       alert("Error creating event");
     }
   };
 
   return (
-    <div className="event-container">
+    <div style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
       <h1>Create Event</h1>
-      <form className="event-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>Event Name:</label>
         <input value={eventName} onChange={(e) => setEventName(e.target.value)} required />
 
-        <div className="row">
-          <div>
-            <label>Start Date:</label>
-            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
-          </div>
-          <div>
-            <label>Start Time:</label>
-            <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
-          </div>
-        </div>
+        <label>Start Date:</label>
+        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
+        <label>Start Time:</label>
+        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
 
-        <div className="row">
-          <div>
-            <label>End Date:</label>
-            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
-          </div>
-          <div>
-            <label>End Time:</label>
-            <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
-          </div>
-        </div>
+        <label>End Date:</label>
+        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+        <label>End Time:</label>
+        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
 
         <label>Location:</label>
         <input value={location} onChange={(e) => setLocation(e.target.value)} />
@@ -85,15 +72,15 @@ export default function EventCreatePage() {
           <option>Paid</option>
         </select>
 
-        <label className="checkbox">
+        <label>
+          Require Approval:
           <input type="checkbox" checked={requireApproval} onChange={(e) => setRequireApproval(e.target.checked)} />
-          Require Approval
         </label>
 
         <label>Capacity:</label>
         <input value={capacity} onChange={(e) => setCapacity(e.target.value)} />
 
-        <button type="submit" className="submit-btn">Create Event</button>
+        <button type="submit">Create Event</button>
       </form>
     </div>
   );

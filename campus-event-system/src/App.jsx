@@ -3,7 +3,8 @@ import IntroPage from "./pages/IntroPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import EventCreatePage from "./pages/EventCreatePage"; // ⬅️ Import this
+import EventCreatePage from "./pages/EventCreatePage"; 
+import  "./App.css";
 
 function App() {
   return (
