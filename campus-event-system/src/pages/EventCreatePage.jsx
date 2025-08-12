@@ -17,7 +17,6 @@ export default function EventCreatePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const eventData = {
       eventName,
       start: `${startDate} ${startTime}`,
@@ -36,52 +35,78 @@ export default function EventCreatePage() {
     });
 
     if (res.ok) {
-      alert("Event Created Successfully!");
-      navigate("/home"); // Go back to home after creation
+      navigate("/events");
     } else {
       alert("Error creating event");
     }
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
-      <h1>Create Event</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Event Name:</label>
-        <input value={eventName} onChange={(e) => setEventName(e.target.value)} required />
+    <div className="bg-gray-900 min-h-screen text-white p-6">
+      <div className="max-w-3xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-6">Create Event</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          <input
+            type="text"
+            placeholder="Event Name"
+            value={eventName}
+            onChange={(e) => setEventName(e.target.value)}
+            className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-yellow-400"
+            required
+          />
 
-        <label>Start Date:</label>
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
-        <label>Start Time:</label>
-        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
+          <div className="grid grid-cols-2 gap-4">
+            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="p-3 rounded-lg bg-gray-700 border border-gray-600" required />
+            <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="p-3 rounded-lg bg-gray-700 border border-gray-600" required />
+          </div>
 
-        <label>End Date:</label>
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
-        <label>End Time:</label>
-        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+          <div className="grid grid-cols-2 gap-4">
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="p-3 rounded-lg bg-gray-700 border border-gray-600" required />
+            <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="p-3 rounded-lg bg-gray-700 border border-gray-600" required />
+          </div>
 
-        <label>Location:</label>
-        <input value={location} onChange={(e) => setLocation(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600"
+          />
 
-        <label>Description:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600"
+          />
 
-        <label>Tickets:</label>
-        <select value={tickets} onChange={(e) => setTickets(e.target.value)}>
-          <option>Free</option>
-          <option>Paid</option>
-        </select>
+          <div className="flex justify-between items-center">
+            <label>Tickets:</label>
+            <select value={tickets} onChange={(e) => setTickets(e.target.value)} className="bg-gray-700 p-2 rounded border border-gray-600">
+              <option>Free</option>
+              <option>Paid</option>
+            </select>
+          </div>
 
-        <label>
-          Require Approval:
-          <input type="checkbox" checked={requireApproval} onChange={(e) => setRequireApproval(e.target.checked)} />
-        </label>
+          <div className="flex items-center gap-2">
+            <label>Require Approval</label>
+            <input type="checkbox" checked={requireApproval} onChange={(e) => setRequireApproval(e.target.checked)} />
+          </div>
 
-        <label>Capacity:</label>
-        <input value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Capacity"
+            value={capacity}
+            onChange={(e) => setCapacity(e.target.value)}
+            className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600"
+          />
 
-        <button type="submit">Create Event</button>
-      </form>
+          <button type="submit" className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500">
+            Create Event
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
