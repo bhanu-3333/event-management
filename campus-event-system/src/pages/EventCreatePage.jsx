@@ -15,7 +15,6 @@ export default function EventCreatePage() {
   const [loading, setLoading] = useState(false);
 
 
-  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
