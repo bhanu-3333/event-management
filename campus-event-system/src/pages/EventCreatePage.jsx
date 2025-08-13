@@ -139,6 +139,8 @@ export default function EventCreatePage() {
             />
           </div>
 
+
+
           <input
             type="text"
             placeholder="Capacity"
