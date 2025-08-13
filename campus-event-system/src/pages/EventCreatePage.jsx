@@ -14,6 +14,8 @@ export default function EventCreatePage() {
   const [capacity, setCapacity] = useState("Unlimited");
   const [loading, setLoading] = useState(false);
 
+
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
