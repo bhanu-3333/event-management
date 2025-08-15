@@ -54,8 +54,6 @@ export default function EventCreatePage() {
     }
   };
 
-
-  
   return (
     <div className="bg-gray-900 min-h-screen text-white p-6">
       <div className="max-w-3xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
